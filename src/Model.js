@@ -29,4 +29,6 @@ const Model = () => {
     return <primitive object={model.scene} scale={0.35} />;
 };
 
+useGLTF.preload("./hamburger-draco.glb"); // this is used for performance reasons, models will be added to the scene only when the user "sees" them, it's important though to preload using the same path and preload the same file
+
 export default Model;
