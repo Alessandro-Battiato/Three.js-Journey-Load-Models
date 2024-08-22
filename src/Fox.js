@@ -1,19 +1,20 @@
 import { useAnimations, useGLTF } from "@react-three/drei";
-import React from "react";
+import React, { useEffect } from "react";
+import { useControls } from "leva";
 
 const Fox = () => {
     const fox = useGLTF("./Fox/glTF/Fox.gltf");
     const animations = useAnimations(fox.animations, fox.scene);
 
+    const { animationName } = useControls({
+        animationName: { options: animations.names },
+    });
+
     useEffect(() => {
         // Sometimes the actions object might be empty on initial renders, thus we use the animations inside a use effect
-        animations.actions.Run.play();
-
-        window.setTimeout(() => {
-            animations.actions.Walk.play();
-            animations.actions.Walk.crossFadeFrom(animations.actions.Run, 1);
-        }, 2000);
-    }, []);
+        const action = animations.actions[animationName];
+        action.play();
+    }, [animationName]);
 
     return (
         <primitive
