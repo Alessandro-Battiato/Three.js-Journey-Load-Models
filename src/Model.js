@@ -1,5 +1,5 @@
 import React from "react";
-import { useGLTF } from "@react-three/drei";
+import { Clone, useGLTF } from "@react-three/drei";
 import { GLTFLoader } from "three/examples/jsm/Addons.js";
 import { DRACOLoader } from "three/examples/jsm/Addons.js";
 import { useLoader } from "@react-three/fiber";
@@ -24,9 +24,16 @@ const Model = () => {
 
     {
         /*To load models, you need to use the primitive tag*/
+        /*When you wnat to load more models, you use the Clone tag instead of the primitive*/
     }
 
-    return <primitive object={model.scene} scale={0.35} />;
+    return (
+        <>
+            <Clone object={model.scene} scale={0.35} position-x={-4} />
+            <Clone object={model.scene} scale={0.35} position-x={0} />
+            <Clone object={model.scene} scale={0.35} position-x={4} />
+        </>
+    );
 };
 
 useGLTF.preload("./hamburger-draco.glb"); // this is used for performance reasons, models will be added to the scene only when the user "sees" them, it's important though to preload using the same path and preload the same file
