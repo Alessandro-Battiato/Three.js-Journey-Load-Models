@@ -20,7 +20,7 @@ const Model = () => {
     */
     }
 
-    const model = useGLTF("./hamburger.glb"); // this is the easiest and most efficient way to load models, the previous one was the "behind the scenes"
+    const model = useGLTF("./hamburger-draco.glb"); // this is the easiest and most efficient way to load models, the previous one was the "behind the scenes"
 
     {
         /*To load models, you need to use the primitive tag*/
