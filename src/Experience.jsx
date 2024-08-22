@@ -1,26 +1,17 @@
 import { OrbitControls } from "@react-three/drei";
 import { Perf } from "r3f-perf";
+import { useLoader } from "@react-three/fiber";
+import { GLTFLoader } from "three/examples/jsm/Addons.js";
 
 export default function Experience() {
+    const model = useLoader(GLTFLoader, "./hamburger.glb"); // files in the public folder are available at the first level like this
+
     return (
         <>
             <Perf position="top-left" />
-
             <OrbitControls makeDefault />
-
             <directionalLight castShadow position={[1, 2, 3]} intensity={4.5} />
             <ambientLight intensity={1.5} />
-
-            <mesh castShadow position-x={-2}>
-                <sphereGeometry />
-                <meshStandardMaterial color="orange" />
-            </mesh>
-
-            <mesh castShadow position-x={2} scale={1.5}>
-                <boxGeometry />
-                <meshStandardMaterial color="mediumpurple" />
-            </mesh>
-
             <mesh
                 receiveShadow
                 position-y={-1}
@@ -30,6 +21,10 @@ export default function Experience() {
                 <planeGeometry />
                 <meshStandardMaterial color="greenyellow" />
             </mesh>
+
+            {/*To load models, you need to use the primitive tag*/}
+
+            <primitive object={model.scene} scale={0.35} />
         </>
     );
 }
