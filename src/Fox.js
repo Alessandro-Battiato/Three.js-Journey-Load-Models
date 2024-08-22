@@ -13,7 +13,11 @@ const Fox = () => {
     useEffect(() => {
         // Sometimes the actions object might be empty on initial renders, thus we use the animations inside a use effect
         const action = animations.actions[animationName];
-        action.play();
+        action.reset().fadeIn(0.5).play(); // fade in takes a number to know how long the animation has to take to fade in
+
+        return () => {
+            action.fadeOut(0.5);
+        };
     }, [animationName]);
 
     return (
