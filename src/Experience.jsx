@@ -3,6 +3,7 @@ import { Perf } from "r3f-perf";
 import { Suspense } from "react";
 import Model from "./Model";
 import Placeholder from "./Placeholder";
+import Hamburger from "./Hamburger";
 
 export default function Experience() {
     return (
@@ -32,7 +33,7 @@ export default function Experience() {
                     />
                 }
             >
-                <Model />
+                <Hamburger scale={0.35} />
             </Suspense>
         </>
     );
